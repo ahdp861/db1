@@ -1,34 +1,34 @@
 -- Создание таблицы Students
 CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,             -- Уникальный идентификатор студента
-    FirstName VARCHAR(50),                 -- Имя студента
-    LastName VARCHAR(50),                  -- Фамилия студента
-    Email VARCHAR(100),                    -- Электронная почта
-    DateOfBirth DATE,                      -- Дата рождения
-    EnrollmentDate DATE,                   -- Дата зачисления
-    PhoneNumber CHAR(15),                  -- Номер телефона фиксированной длины
-    IsActive BOOLEAN,                      -- Активный ли студент (true/false)
-    GPA DECIMAL(3, 2),                     -- Средний балл (например, 3.75)
-    GrantSum MONEY 							-- Размер стипендии
+    StudentID INT PRIMARY KEY,             
+    FirstName VARCHAR(50),                
+    LastName VARCHAR(50),                  
+    Email VARCHAR(100),                    
+    DateOfBirth DATE,                      
+    EnrollmentDate DATE,                   
+    PhoneNumber CHAR(15),                  
+    IsActive BOOLEAN,                      
+    GPA DECIMAL(3, 2),                     
+    GrantSum MONEY 							
 );
 
 -- Создание таблицы Courses
 CREATE TABLE Courses (
-    CourseID INT PRIMARY KEY,              -- Уникальный идентификатор курса
-    CourseName VARCHAR(100),               -- Название курса
-    Credits SMALLINT,                      -- Количество кредитов за курс
-    StartDate DATE,                        -- Дата начала курса
-    EndDate DATE,                          -- Дата окончания курса
-    Description TEXT                       -- Описание курса (длинный текст)
+    CourseID INT PRIMARY KEY,             
+    CourseName VARCHAR(100),               
+    Credits SMALLINT,                      
+    StartDate DATE,                        
+    EndDate DATE,                         
+    Description TEXT                       
 );
 
 -- Создание таблицы Enrollments (связь между Students и Courses)
 CREATE TABLE Enrollments (
-    EnrollmentID BIGINT PRIMARY KEY,       -- Уникальный идентификатор записи
-    StudentID INT,                         -- Идентификатор студента (внешний ключ)
-    CourseID INT,                          -- Идентификатор курса (внешний ключ)
-    Grade FLOAT,                           -- Оценка студента по курсу (например, 85.5)
-    EnrollmentDateTime TIMESTAMP,          -- Дата и время записи на курс
+    EnrollmentID BIGINT PRIMARY KEY,       
+    StudentID INT,                         
+    CourseID INT,                          
+    Grade FLOAT,                           
+    EnrollmentDateTime TIMESTAMP,          
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -55,8 +55,8 @@ VALUES
 (2, 1, 2, 90.0, CURRENT_TIMESTAMP),
 (3, 2, 1, 88.0, CURRENT_TIMESTAMP),
 (4, 2, 3, 92.0, CURRENT_TIMESTAMP),
-(5, 3, 4, NULL, CURRENT_TIMESTAMP), -- Студент еще не получил оценку
+(5, 3, 4, NULL, CURRENT_TIMESTAMP), 
 (6, 4, 2, 95.0, CURRENT_TIMESTAMP),
 (7, 4, 5, 89.0, CURRENT_TIMESTAMP),
 (8, 5, 3, 80.0, CURRENT_TIMESTAMP),
-(9, 5, 4, NULL , CURRENT_TIMESTAMP); -- Студент еще не получил оценку
+(9, 5, 4, NULL , CURRENT_TIMESTAMP); 
