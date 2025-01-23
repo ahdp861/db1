@@ -7,7 +7,7 @@ class Program
 {
     
     private static string connectionString = "Host=localhost;Port=5432;Database=db1;Username=postgres;Password=a";
-    private static string logFilePath = "log.txt"; // Путь к файлу лога
+    private static string logFilePath = "log.txt"; 
 
     static void Main(string[] args)
     {
@@ -30,19 +30,19 @@ class Program
                     savepointCommand.ExecuteNonQuery();
                     Log("Успешно");
 
-                    // 1. Чтение данных из всех таблиц
+                    
                     ReadData(connection);
 
-                    // 2. Вставка данных во все таблицы
+                   
                     InsertData(connection);
 
-                    // 3. Изменение всех полей во всех таблицах по условию
+                    
                     UpdateData(connection);
 
-                    // 4. Удаление данных из всех таблиц по условию
+                 
                     DeleteData(connection);
 
-                    // Откат всей транзакции после успешного выполнения всех операций
+                 
                     transaction.Rollback();
                     Log("Транзакция успешно завершена и откачена.");
                 }
@@ -50,7 +50,7 @@ class Program
                 {
                     Log($"Ошибка: {ex.Message}");
 
-                    // Откат к точке сохранения в случае ошибки
+                
                     var rollbackCommand = new NpgsqlCommand($"ROLLBACK TO SAVEPOINT my_savepoint", connection);
                     LogQuery(rollbackCommand);
                     rollbackCommand.Transaction = transaction;
@@ -59,7 +59,7 @@ class Program
 
                     Log("Откат к точке сохранения выполнен.");
 
-                    // Откат всей транзакции, если это необходимо
+                
                     
                 }
             }
@@ -166,7 +166,7 @@ class Program
 
     private static void UpdateData(NpgsqlConnection connection)
     {
-        // Обновление всех полей в таблице Students
+      
         var updateStudentsCommand = new NpgsqlCommand(
             "UPDATE Students SET " +
             "StudentId = 10, " +
@@ -185,7 +185,7 @@ class Program
         updateStudentsCommand.ExecuteNonQuery();
         Log("Успешно");
 
-        // Обновление всех полей в таблице Courses
+     
         var updateCoursesCommand = new NpgsqlCommand(
             "UPDATE Courses SET " +
             "CourseId = 100, " +
@@ -200,7 +200,7 @@ class Program
         updateCoursesCommand.ExecuteNonQuery();
         Log("Успешно");
 
-        // Обновление всех полей в таблице Enrollments
+ 
         var updateEnrollmentsCommand = new NpgsqlCommand(
             "UPDATE Enrollments SET " +
             "EnrollmentId = 101, " +
