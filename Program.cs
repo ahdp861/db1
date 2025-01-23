@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO; // Для работы с файлами
+using System.IO; 
 using Npgsql;
 
 class Program
@@ -22,7 +22,7 @@ class Program
                 {
                     Log("Начало транзакции.");
 
-                    // Установка точки сохранения
+                    
                     var savepointName = "my_savepoint";
                     var savepointCommand = new NpgsqlCommand($"SAVEPOINT {savepointName}", connection);
                     LogQuery(savepointCommand);
@@ -64,7 +64,7 @@ class Program
                 }
             }
 
-            // Вывод содержимого лога в консоль
+        
             ReadLog();
 
 
